@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Ajedrez</title>
+		
+		<style>
+		table {
+			border-collapse: collapse;
+		}
+		
+		td {
+			border-width: 2px;
+			border-color: chocolate;
+			
+			width: 1.25em;
+			height: 1.25em;
+			
+			font-size: 200%;
+			
+			text-align: center;
+		}
+		
+		tr:nth-child( odd ) td:nth-child( odd ),  tr:nth-child( even ) td:nth-child( even ) {
+			background-color: chocolate;
+		}
+
+		tr:nth-child( odd ) td:nth-child( even ), tr:nth-child( even ) td:nth-child( odd )  {
+			background-color: beige;
+		}
+		
+		table>tr>td.seleccionado { background-color: yellow; !important}
+		
+		</style>
+		
+		<script>
+		
+function programarClicks(){
+	// Recorre todo elementos td en la tabla y les asigna el listener onclick
+	// window.alert( "Voy a programar los clicks" );
+	// Buscar todas las casillas y guardar en un Array
+	var casillas = document.querySelectorAll( "table td" );
+	
+	// Recorrer el Array
+	for( var i=0; i < casillas.length; i++ ){
+		// Programa el evento onclick para que llame al metodo elegir()
+		casillas[i].addEventListener( "click", elegir );
+	}
+	
+}		
+		
+function elegir( ev, obj ){
+	// Determinar si hay una seleccion anterior
+	var seleccionado = document.querySelector( ".seleccionado" );
+
+	if( seleccionado == null ){
+		// No hay una seleccion previa
+		// Cambiar la clase de la celda para mostrarla en otro color
+		if( ev.target.innerText != "" ){
+			ev.target.classList.add( "seleccionado" );
+			ev.target.style.backgroundColor = "yellow";
+		}
+	} else {
+		// Ya habia un elemento seleccionado
+		// window.alert( "Ya hay una casilla seleccionada" );
+        var srt = seleccionado.innerText.charCodeAt(0);
+        var color;
+        var negras = [9818,9819, 9820, 9821, 9822, 9823];
+        var blancas = [9812, 9813, 9814, 9815, 9816, 9817];
+        for (var i = 0; i < negras.length; i++) {
+          if (negras[i]==srt) {
+            color="negras";
+            break;          
+        }
+
+
+    var seleccion2 = ev.target.innerText.charCodeAt(0);
+    if (color=="negras") {
+      for (var i = 0; i < blancas.length; i++) {
+        if (blancas[i]==seleccion2) {
+          ev.target.innerText = seleccionado.innerText;
+          seleccionado.innerText = "";
+          seleccionado.style.backgroundColor = "";
+          seleccionado.classList.remove("seleccionado" );
+        }
+      }
+    }else {
+      for (var i = 0; i < negras.length; i++) {
+        if(negras[i]==ev.target.innerText.charCodeAt(0)){
+          ev.target.innerText = seleccionado.innerText;
+          seleccionado.innerText = "";
+          seleccionado.style.backgroundColor = "";
+          seleccionado.classList.remove("seleccionado" );
+        }
+      }
+    }
+
+   seleccionado.style.backgroundColor = "";
+   seleccionado.classList.remove("seleccionado" );
+  }
+}
+}
+		</script>
+    </head>
+<body onload="programarClicks();" >
+
+    <h1  >Para pensar </h1>
+    
+        <table  border="1" >
+        
+    <tr>
+            <td onclick="elegir()" >&#9820</td>
+        
+            <td >&#9822</td>
+        
+            <td  class="negra" >&#9821</td>
+        
+            <td class="blanca">&#9819</td>
+        
+            <td  >&#9818</td>
+        
+            <td >&#9821</td>
+        
+            <td  >&#9822</td>
+        
+            <td >&#9820</td>     
+    </tr>
+        
+    <tr>
+            <td >&#9823</td>
+            <td  >&#9823</td>
+            <td  >&#9823</td>
+            <td  >&#9823</td>
+            <td >&#9823</td>
+            <td  >&#9823</td>
+            <td >&#9823</td>
+            <td  >&#9823</td>     
+    </tr>
+    
+    <tr>
+            <td ></td>
+        
+            <td></td>
+        
+            <td ></td>
+        
+            <td></td>
+        
+            <td ></td>
+        
+            <td></td>
+        
+            <td ></td>
+        
+            <td></td>     
+    </tr>
+            
+    <tr>
+            <td></td>
+            <td ></td>
+            <td></td>
+            <td ></td>
+            <td></td>
+            <td ></td>
+            <td></td>
+            <td ></td>     
+    </tr>
+            
+    <tr>
+            <td ></td>
+            <td></td>
+            <td ></td>
+            <td></td>
+            <td ></td>
+            <td></td>
+            <td ></td>
+            <td></td>     
+    </tr>
+    
+    <tr>
+            <td></td>
+            <td ></td>
+            <td></td>
+            <td ></td>
+            <td></td>
+            <td ></td>
+            <td></td>
+            <td ></td>     
+    </tr>
+            
+    <tr>
+            <td  >&#9817</td>
+            <td >&#9817</td>
+            <td  >&#9817</td>
+            <td >&#9817</td>
+            <td  >&#9817</td>
+            <td >&#9817</td>
+            <td  >&#9817</td>
+            <td >&#9817</td>     
+    </tr>
+            
+            <tr>
+            <td >&#9814</td>
+            <td  >&#9816</td>
+            <td >&#9815</td>
+            <td  >&#9813</td>
+            <td >&#9812</td>
+            <td  >&#9815</td>
+            <td >&#9816</td>
+            <td  >&#9814</td>     
+    </tr>
+  
+        </table>
+		
+	<script>
+	// lamar al cargar la pagina
+	
+	</script>
+		
+    </body>
+</html>
